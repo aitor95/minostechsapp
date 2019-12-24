@@ -21,7 +21,8 @@ flutter:
 ```
 
 
-Este proyecto ha sido realizado por:
+## Integrantes del Proyecto
+
 * Aitor Blesa López
 * David Seguí García
 * Joan Lluís Mudarra Barros
