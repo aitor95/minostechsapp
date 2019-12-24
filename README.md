@@ -21,7 +21,7 @@ flutter:
 ```
 
 
-## Integrantes del Proyecto
+## Project members
 
 * Aitor Blesa López
 * David Seguí García
