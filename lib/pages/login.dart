@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:minostechsapp/global.dart';
 import 'package:minostechsapp/pages/register.dart';
 import '../slideNavigation/slideLeft.dart';
+import '../pages/interests.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -17,7 +18,8 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
+      theme: ThemeData(fontFamily: 'Montserrat'),
+      // debugShowCheckedModeBanner: false,
       home: Scaffold(
         resizeToAvoidBottomPadding: false,
         body: SingleChildScrollView(
@@ -36,7 +38,6 @@ class _LoginState extends State<Login> {
                       child: Text(
                         "Welcome!",
                         style: TextStyle(
-                            fontFamily: 'Montserrat',
                             fontWeight: FontWeight.w600,
                             fontSize: 42.0,
                             color: Colors.black),
@@ -46,10 +47,7 @@ class _LoginState extends State<Login> {
                       padding: EdgeInsets.only(top: 160.0),
                       child: Text(
                         "Log in to your account.",
-                        style: TextStyle(
-                            fontFamily: 'Montserrat',
-                            fontSize: 20.0,
-                            color: grayColor),
+                        style: TextStyle(fontSize: 20.0, color: grayColor),
                       ),
                     ),
                     Container(
@@ -72,10 +70,16 @@ class _LoginState extends State<Login> {
                           RaisedButton(
                             padding: EdgeInsets.symmetric(
                                 vertical: 16.0, horizontal: 58.0),
-                            onPressed: () {},
-                            child: const Text('Login',
-                                style: TextStyle(
-                                    fontSize: 20, fontFamily: 'Montserrat')),
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Interests()));
+                            },
+                            child: const Text(
+                              'Login',
+                              style: TextStyle(fontSize: 20),
+                            ),
                             elevation: 10.0,
                             textColor: whiteColor,
                             color: primaryGreenColor,
@@ -83,11 +87,11 @@ class _LoginState extends State<Login> {
                           RaisedButton(
                             padding: EdgeInsets.all(16.0),
                             onPressed: () {},
-                            child: const Text('in',
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    fontFamily: 'Montserrat',
-                                    fontWeight: FontWeight.w600)),
+                            child: const Text(
+                              'in',
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.w600),
+                            ),
                             elevation: 10.0,
                             textColor: whiteColor,
                             color: linkedInColor,
@@ -103,8 +107,7 @@ class _LoginState extends State<Login> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               Text("Don't have account?",
-                                  style: TextStyle(
-                                      fontFamily: 'Montserrat', fontSize: 15)),
+                                  style: TextStyle(fontSize: 15)),
                               FlatButton(
                                 onPressed: () {
                                   Navigator.push(context,
@@ -112,7 +115,6 @@ class _LoginState extends State<Login> {
                                 },
                                 child: Text("Sign Up",
                                     style: TextStyle(
-                                        fontFamily: 'Montserrat',
                                         fontSize: 15,
                                         color: primaryGreenColor,
                                         fontWeight: FontWeight.w600)),

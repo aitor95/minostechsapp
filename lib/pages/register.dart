@@ -17,7 +17,8 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
+      theme: ThemeData(fontFamily: 'Montserrat'),
+      // debugShowCheckedModeBanner: false,
       home: Scaffold(
         resizeToAvoidBottomPadding: false,
         body: SingleChildScrollView(
@@ -31,7 +32,6 @@ class _RegisterState extends State<Register> {
                       child: Text(
                         "Hi!",
                         style: TextStyle(
-                            fontFamily: 'Montserrat',
                             fontWeight: FontWeight.w600,
                             fontSize: 42.0,
                             color: Colors.black),
@@ -41,10 +41,7 @@ class _RegisterState extends State<Register> {
                       padding: EdgeInsets.only(top: 60.0),
                       child: Text(
                         "Create new account.",
-                        style: TextStyle(
-                            fontFamily: 'Montserrat',
-                            fontSize: 20.0,
-                            color: grayColor),
+                        style: TextStyle(fontSize: 20.0, color: grayColor),
                       ),
                     ),
                     Container(
@@ -80,8 +77,7 @@ class _RegisterState extends State<Register> {
                                 vertical: 16.0, horizontal: 51.0),
                             onPressed: () {},
                             child: const Text('Sign Up',
-                                style: TextStyle(
-                                    fontFamily: 'Montserrat', fontSize: 20)),
+                                style: TextStyle(fontSize: 20)),
                             elevation: 10.0,
                             textColor: whiteColor,
                             color: primaryGreenColor,
@@ -95,8 +91,7 @@ class _RegisterState extends State<Register> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               Text("Have an account?",
-                                  style: TextStyle(
-                                      fontSize: 15, fontFamily: 'Montserrat')),
+                                  style: TextStyle(fontSize: 15)),
                               FlatButton(
                                 onPressed: () {
                                   Navigator.push(
@@ -104,7 +99,6 @@ class _RegisterState extends State<Register> {
                                 },
                                 child: Text("Sign In",
                                     style: TextStyle(
-                                        fontFamily: 'Montserrat',
                                         fontSize: 15,
                                         color: primaryGreenColor,
                                         fontWeight: FontWeight.w600)),

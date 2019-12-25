@@ -11,6 +11,8 @@ class MinosTechsApp extends StatefulWidget {
 class _MinosTechsAppState extends State<MinosTechsApp> {
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(home: SplashScreen());
+    return new MaterialApp(
+      home: SplashScreen(),
+    );
   }
 }
