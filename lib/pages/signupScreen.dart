@@ -15,6 +15,20 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  final _formKey = GlobalKey<FormState>();
+  final passKey = GlobalKey<FormFieldState>();
+  String _username, _password, _confirmPassword, _email;
+
+  _submit() {
+    if (_formKey.currentState.validate()) {
+      _formKey.currentState.save();
+      print(_username);
+      print(_password);
+      print(_confirmPassword);
+      print(_email);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -27,7 +41,8 @@ class _SignUpState extends State<SignUp> {
             children: <Widget>[
               Container(
                 padding: EdgeInsets.fromLTRB(54.5, 100, 54.5, 0),
-                child: Stack(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Container(
                       child: Text(
@@ -38,52 +53,123 @@ class _SignUpState extends State<SignUp> {
                             color: Colors.black),
                       ),
                     ),
+                    SizedBox(
+                      height: 10.0,
+                    ),
                     Container(
-                      padding: EdgeInsets.only(top: 60.0),
                       child: Text(
                         "Create new account.",
                         style: TextStyle(fontSize: 20.0, color: grayColor),
                       ),
                     ),
-                    Container(
-                      padding: EdgeInsets.only(top: 130.0),
-                      child: TextFormField(
-                        decoration: InputDecoration(labelText: 'Username'),
-                      ),
+                    SizedBox(
+                      height: 10.0,
                     ),
-                    Container(
-                      padding: EdgeInsets.only(top: 220.0),
-                      child: TextFormField(
-                        decoration: InputDecoration(labelText: 'Password'),
-                      ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.only(top: 310.0),
-                      child: TextFormField(
-                        decoration:
-                            InputDecoration(labelText: 'Confirm Password'),
-                      ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.only(top: 400.0),
-                      child: TextFormField(
-                        decoration: InputDecoration(labelText: 'Email'),
-                      ),
-                    ),
-                    Container(
-                        padding: EdgeInsets.fromLTRB(0, 520, 0, 0),
-                        child: Center(
-                          child: RaisedButton(
-                            padding: EdgeInsets.symmetric(
-                                vertical: 16.0, horizontal: 51.0),
-                            onPressed: () {},
-                            child: const Text('Sign Up',
-                                style: TextStyle(fontSize: 20)),
-                            elevation: 10.0,
-                            textColor: whiteColor,
-                            color: primaryGreenColor,
+                    Form(
+                      key: _formKey,
+                      child: Column(
+                        children: <Widget>[
+                          Container(
+                            child: TextFormField(
+                              validator: (input) => input.length <= 0
+                                  ? 'Please enter a Username'
+                                  : null,
+                              onSaved: (input) => _username = input,
+                              decoration:
+                                  InputDecoration(labelText: 'Username'),
+                            ),
                           ),
-                        )),
+                          SizedBox(
+                            height: 20.0,
+                          ),
+                          Container(
+                            child: TextFormField(
+                              key: passKey,
+                              validator: (input) => input.length < 6
+                                  ? 'Must be at least 6 characters'
+                                  : null,
+                              onSaved: (input) => _password = input,
+                              decoration:
+                                  InputDecoration(labelText: 'Password'),
+                              obscureText: true,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20.0,
+                          ),
+                          Container(
+                            // padding: EdgeInsets.only(top: 320.0),
+                            child: TextFormField(
+                              validator: (input) {
+                                return input != passKey.currentState.value
+                                    ? 'Passwords do not match'
+                                    : null;
+                              },
+                              onSaved: (input) => _confirmPassword = input,
+                              decoration: InputDecoration(
+                                  labelText: 'Confirm Password'),
+                              obscureText: true,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20.0,
+                          ),
+                          Container(
+                            child: TextFormField(
+                              validator: (input) => !input.contains('@')
+                                  ? 'Enter a valid email address'
+                                  : null,
+                              onSaved: (input) => _email = input,
+                              decoration: InputDecoration(labelText: 'Email'),
+                              obscureText: true,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 50.0,
+                          ),
+                          Center(
+                            child: RaisedButton(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 16.0, horizontal: 58.0),
+                              onPressed: () => _submit(),
+                              // Navigator.pushNamed(
+                              //     context, Interests.id),
+                              child: const Text(
+                                'Sign Up',
+                                style: TextStyle(fontSize: 20),
+                              ),
+                              elevation: 10.0,
+                              textColor: whiteColor,
+                              color: primaryGreenColor,
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.only(top: 10),
+                            child: Center(
+                              child: Container(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Text("Already have account?",
+                                        style: TextStyle(fontSize: 15)),
+                                    FlatButton(
+                                      onPressed: () => Navigator.pushNamed(
+                                          context, Login.id),
+                                      child: Text("Sign in",
+                                          style: TextStyle(
+                                              fontSize: 15,
+                                              color: primaryGreenColor,
+                                              fontWeight: FontWeight.w600)),
+                                    )
+                                  ],
+                                ),
+                                alignment: Alignment(0, 0),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                     Container(
                       padding: EdgeInsets.only(top: 600),
                       child: Center(

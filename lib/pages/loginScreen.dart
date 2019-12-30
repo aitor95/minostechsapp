@@ -109,9 +109,9 @@ class _LoginState extends State<Login> {
                                 RaisedButton(
                                   padding: EdgeInsets.symmetric(
                                       vertical: 16.0, horizontal: 58.0),
-                                  onPressed: () => //_submit(),
-                                      Navigator.pushNamed(
-                                          context, Interests.id),
+                                  onPressed: () => _submit(),
+                                  // Navigator.pushNamed(
+                                  //     context, Interests.id),
                                   child: const Text(
                                     'Login',
                                     style: TextStyle(fontSize: 20),
