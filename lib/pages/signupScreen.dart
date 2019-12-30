@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:minostechsapp/global.dart';
 import 'package:minostechsapp/pages/loginScreen.dart';
+import 'package:minostechsapp/services/auth_service.dart';
 // import 'package:minostechsapp/Navigation/slideRight.dart';
 
 class SignUp extends StatefulWidget {
@@ -22,10 +23,11 @@ class _SignUpState extends State<SignUp> {
   _submit() {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
-      print(_username);
-      print(_password);
-      print(_confirmPassword);
-      print(_email);
+      // print(_username);
+      // print(_password);
+      // print(_confirmPassword);
+      // print(_email);
+      AuthService.signUpUser(context, _username, _email, _password);
     }
   }
 

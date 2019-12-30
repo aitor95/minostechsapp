@@ -16,12 +16,12 @@ class Interests extends StatefulWidget {
 }
 
 class _InterestsState extends State<Interests> {
-  bool _isChecked;
+  // bool _isChecked;
   int _selectedRadioTile;
 
   void initState() {
     super.initState();
-    _isChecked = false;
+    // _isChecked = false;
     _selectedRadioTile = 0;
   }
 

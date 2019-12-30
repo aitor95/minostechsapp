@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:minostechsapp/services/auth_service.dart';
 
 class Profile extends StatefulWidget {
   @override
@@ -10,7 +11,10 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return Container(
       child: Center(
-        child: Text('Profile'),
+        child: FlatButton(
+          onPressed: () => AuthService.logout(context),
+          child: Text('logout'),
+        ),
       ),
     );
   }

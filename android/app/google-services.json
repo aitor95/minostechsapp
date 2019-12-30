@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "660650355370",
+    "firebase_url": "https://flutter-minostechsapp.firebaseio.com",
+    "project_id": "flutter-minostechsapp",
+    "storage_bucket": "flutter-minostechsapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:660650355370:android:5ca9149b889d8e21377ed3",
+        "android_client_info": {
+          "package_name": "com.example.minostechsapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "660650355370-s5gdcta1u7f5v9flpjd3si3okf2tuq28.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADrJJMs_QHSZtfxRo-DIq1DrYv4S89CUM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "660650355370-s5gdcta1u7f5v9flpjd3si3okf2tuq28.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

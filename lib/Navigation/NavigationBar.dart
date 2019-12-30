@@ -6,6 +6,8 @@ import 'package:minostechsapp/pages/sharedFilesScreen.dart';
 import 'package:minostechsapp/pages/profileScreen.dart';
 
 class NavigationBar extends StatefulWidget {
+  static final id = 'navigationBarScreen';
+
   @override
   _NavigationBarState createState() => _NavigationBarState();
 }

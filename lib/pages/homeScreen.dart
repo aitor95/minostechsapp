@@ -5,6 +5,7 @@ import 'package:minostechsapp/global.dart';
 import 'package:minostechsapp/pages/cardCreationScreen.dart';
 
 class Home extends StatefulWidget {
+  static final id = 'homeScreen';
   @override
   _HomeState createState() => _HomeState();
 }

@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:minostechsapp/global.dart';
 import 'package:minostechsapp/pages/signupScreen.dart';
-import 'package:minostechsapp/pages/interestsScreen.dart';
+import 'package:minostechsapp/services/auth_service.dart';
+
+// import 'package:minostechsapp/pages/interestsScreen.dart';
 
 class Login extends StatefulWidget {
   static final String id = 'loginScreen';
@@ -22,9 +24,9 @@ class _LoginState extends State<Login> {
   _submit() {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
-      print(_username);
-      print(_password);
-      //* TODO: Attempt to Login the user
+      // print(_username);
+      // print(_password);
+      AuthService.login(_username, _password);
     }
   }
 
