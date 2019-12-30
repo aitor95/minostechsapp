@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../pages/login.dart';
-import '../pages/register.dart';
+import 'package:minostechsapp/pages/signupScreen.dart';
+import 'package:minostechsapp/pages/loginScreen.dart';
 
 class AfterSplash extends StatelessWidget {
   @override
@@ -10,7 +10,7 @@ class AfterSplash extends StatelessWidget {
     if (1 == 1) {
       child = Login();
     } else {
-      child = Register();
+      child = SignUp();
     }
     return Scaffold(
       body: Center(child: child),

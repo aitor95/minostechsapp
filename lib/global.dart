@@ -5,3 +5,4 @@ Color linkedInColor = new Color(0xFF0E76A8);
 Color grayColor = new Color(0xFF707070);
 Color blackColor = new Color(0xFF000000);
 Color whiteColor = new Color(0xFFFFFFFF);
+Color orangeColor = new Color(0xFFB677);
