@@ -34,7 +34,6 @@ class _CardCreationState extends State<CardCreation> {
   }
 
   //TODO: Match Theme in CardCreation
-
   //TODO: CreateView once clicked on the card, for edit
 
   @override
