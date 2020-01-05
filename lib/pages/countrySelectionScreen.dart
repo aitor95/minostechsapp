@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:minostechsapp/Navigation/NavigationBar.dart';
-import 'package:minostechsapp/global.dart';
+import 'package:minostechsapp/pages/cardCreationScreen.dart';
+import 'package:minostechsapp/utilities/global.dart';
 import 'package:flutter_country_picker/flutter_country_picker.dart';
 import 'package:minostechsapp/Navigation/slideLeft.dart';
 
@@ -12,10 +13,17 @@ class CountrySelection extends StatefulWidget {
 class _CountrySelectionState extends State<CountrySelection> {
   Country _selected;
 
+  _submit(String country) {
+    //Update user with the country selected
+    Navigator.push(context, SlideLeftRoute(page: CardCreation()));
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+        primaryIconTheme:
+            Theme.of(context).primaryIconTheme.copyWith(color: blackColor),
         fontFamily: 'Montserrat',
       ),
       home: Scaffold(
@@ -52,7 +60,6 @@ class _CountrySelectionState extends State<CountrySelection> {
                             _selected = country;
                           });
                         },
-                        selectedCountry: _selected,
                       ),
                     ),
                     FlatButton(
@@ -60,17 +67,14 @@ class _CountrySelectionState extends State<CountrySelection> {
                         vertical: 16.0,
                         horizontal: 20.0,
                       ),
-                      onPressed: () {
-                        Navigator.push(
-                            context, SlideLeftRoute(page: NavigationBar()));
-                      },
+                      onPressed: () => _submit(_selected.name),
                       child: Center(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           // crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
                             Text(
-                              'Next',
+                              'Create your visit Card',
                               style: TextStyle(
                                 fontSize: 20.0,
                                 fontWeight: FontWeight.w600,

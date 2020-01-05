@@ -1,17 +1,15 @@
-import 'package:minostechsapp/models/user_model.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class VisitCard {
-  User user;
+  String color;
 
   VisitCard({
-    this.user,
+    this.color,
   });
-}
 
-User user = User(
-    name: "Aitor",
-    surname1: "Blesa",
-    surname2: "Lopez",
-    cardId: 0,
-    profession: "UI / UX Junior Designer",
-    userLinkedin: "aitorblesalopez");
+  factory VisitCard.fromDoc(DocumentSnapshot doc) {
+    return VisitCard(
+      color: doc['color'],
+    );
+  }
+}

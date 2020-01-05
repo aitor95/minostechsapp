@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:minostechsapp/global.dart';
+import 'package:minostechsapp/services/database_service.dart';
+import 'package:minostechsapp/utilities/global.dart';
 import 'package:minostechsapp/Navigation/slideLeft.dart';
 import 'package:minostechsapp/pages/countrySelectionScreen.dart';
 
@@ -21,7 +22,6 @@ class _InterestsState extends State<Interests> {
 
   void initState() {
     super.initState();
-    // _isChecked = false;
     _selectedRadioTile = 0;
   }
 
@@ -29,6 +29,32 @@ class _InterestsState extends State<Interests> {
     setState(() {
       _selectedRadioTile = value;
     });
+  }
+
+  _submit(int selected) {
+    String interest;
+    switch (selected) {
+      case 1:
+        interest = 'Make Contacts';
+        break;
+      case 2:
+        interest = 'Contact Client - Business';
+        break;
+      case 3:
+        interest = 'Retail Concern';
+        break;
+      case 4:
+        interest = 'Presentations';
+        break;
+      case 5:
+        interest = 'Stands Design';
+        break;
+      case 6:
+        interest = 'Other';
+        break;
+    }
+    //Update user with this interest
+    Navigator.push(context, SlideLeftRoute(page: CountrySelection()));
   }
 
   @override
@@ -41,7 +67,6 @@ class _InterestsState extends State<Interests> {
         backgroundColor: whiteColor,
         body: SafeArea(
           child: Column(
-            // crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               SizedBox(height: 50.0),
               Container(
@@ -169,10 +194,7 @@ class _InterestsState extends State<Interests> {
                             vertical: 16.0,
                             horizontal: 20.0,
                           ),
-                          onPressed: () => Navigator.push(context,
-                              SlideLeftRoute(page: CountrySelection())),
-                          // Para Coger cual se ha seleccionado, devuelve un numero: _selectedRadioTile
-
+                          onPressed: () => _submit(_selectedRadioTile),
                           child: Center(
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,

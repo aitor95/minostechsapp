@@ -1,18 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:minostechsapp/custom/visit_card.dart';
+import 'package:minostechsapp/models/card_data.dart';
+import 'package:minostechsapp/models/user_data.dart';
+import 'package:minostechsapp/models/user_model.dart';
 import 'package:minostechsapp/models/visitCard_model.dart';
-import 'package:minostechsapp/global.dart';
+import 'package:minostechsapp/utilities/global.dart';
 import 'package:minostechsapp/pages/cardCreationScreen.dart';
+import 'package:minostechsapp/services/database_service.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
   static final id = 'homeScreen';
+  final String currentUserId;
+  final String userId;
+
+  Home({this.currentUserId, this.userId});
+
   @override
   _HomeState createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
+  User _profileUser;
+
+  @override
+  void initState() {
+    super.initState();
+    _setupUser();
+  }
+
+  _setupUser() async {
+    User profileUser = await DatabaseService.getUserWithId(widget.userId);
+    setState(() {
+      _profileUser = profileUser;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    final String currentUserId = Provider.of<UserData>(context).currentUserId;
+
     return Scaffold(
       backgroundColor: whiteColor,
       body: SafeArea(
@@ -34,20 +61,14 @@ class _HomeState extends State<Home> {
                   ),
                   SizedBox(height: 30),
                   CardWidget(
+                    currentUserId: currentUserId,
+                    userId: currentUserId,
                     color: orangeColor,
-                    user: user,
                   ),
                   SizedBox(height: 20),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      // Text(
-                      //   "Share your Card",
-                      //   style: TextStyle(
-
-                      //       fontSize: 20.0,
-                      //       fontWeight: FontWeight.w600),
-                      // ),
                       SizedBox(height: 30),
                       Center(
                         child: GestureDetector(
@@ -56,7 +77,6 @@ class _HomeState extends State<Home> {
                             width: 150.0,
                             height: 150.0,
                             decoration: BoxDecoration(
-                              // borderRadius: BorderRadius.circular(50.0%),
                               shape: BoxShape.circle,
                               color: grayColor.withOpacity(0.5),
                             ),
@@ -69,11 +89,13 @@ class _HomeState extends State<Home> {
                             alignment: Alignment.center,
                           ),
                         ),
-                        // child: Image.asset(
-                        //   'assets/images/shareCard.png',
-                        //   width: 300.0,
-                        // ),
                       ),
+                      //   child: Image.asset(
+                      //     'assets/images/shareCard.png',
+                      //     width: 200.0,
+                      //   ),
+                      // ),
+                      //),
                       SizedBox(
                         height: 50.0,
                       ),

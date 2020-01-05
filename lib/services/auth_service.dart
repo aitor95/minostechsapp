@@ -1,13 +1,14 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:minostechsapp/Navigation/NavigationBar.dart';
-import 'package:minostechsapp/pages/loginScreen.dart';
+import 'package:minostechsapp/pages/interestsScreen.dart';
+import 'package:minostechsapp/services/database_service.dart';
+import 'package:minostechsapp/utilities/constants.dart';
 
 class AuthService {
   static final _auth = FirebaseAuth.instance;
-  static final _firestore = Firestore.instance;
 
+  // register with email and password
   static void signUpUser(BuildContext context, String username, String email,
       String password) async {
     try {
@@ -16,35 +17,42 @@ class AuthService {
         password: password,
       );
       FirebaseUser signedUser = authResult.user;
+
+      // Relate this new user with a new card with the default color Blue
+      await DatabaseService(uid: signedUser.uid).updateUserCard('blue');
       if (signedUser != null) {
-        _firestore.collection('/users').document(signedUser.uid).setData({
-          'cardId': 0,
+        usersRef.document(signedUser.uid).setData({
           'name': '',
           'profession': '',
           'profileImageUrl': '',
           'surname1': '',
           'surname2': '',
-          'username': username,
-          'userLinkedIn': '',
+          'userLinkedin': '',
           'email': email,
           'password': password,
+          'firstTime': true,
+          'interests': '',
+          'country': '',
         });
-        Navigator.pushReplacementNamed(context, NavigationBar.id);
+        Navigator.pushReplacementNamed(context, Interests.id);
       }
     } catch (e) {
       print(e);
     }
   }
 
+  //Logout the user from the app
   static void logout(BuildContext context) {
     _auth.signOut();
-    Navigator.pushReplacementNamed(context, Login.id);
+    // Navigator.pushReplacementNamed(context, Login.id);
   }
 
-  static void login(String email, String password) async {
-    _auth.signInWithEmailAndPassword(
-      email: email,
-      password: password,
-    );
+  // Log in the app with the user
+  static void login(BuildContext context, String email, String password) async {
+    try {
+      await _auth.signInWithEmailAndPassword(email: email, password: password);
+    } catch (e) {
+      print(e);
+    }
   }
 }

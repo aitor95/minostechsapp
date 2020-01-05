@@ -21,8 +21,13 @@ class CardColor {
     "grayBlue"
   ];
 
-  // static List<CardColorsModel> cardColors = new List<CardColorsModel>.generate(
-  //     baseColors.length,
-  //     (int index) => CardColorsModel(isSelected: false, cardColor: index));
-
+  static List<String> isLiked = <String>[
+    "false",
+    "false",
+    "false",
+    "false",
+    "false",
+    "false",
+    "false",
+  ];
 }

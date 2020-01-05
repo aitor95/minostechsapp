@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:minostechsapp/global.dart';
+import 'package:minostechsapp/utilities/global.dart';
 import 'package:minostechsapp/pages/loginScreen.dart';
 import 'package:minostechsapp/services/auth_service.dart';
 // import 'package:minostechsapp/Navigation/slideRight.dart';
@@ -71,14 +71,16 @@ class _SignUpState extends State<SignUp> {
                       key: _formKey,
                       child: Column(
                         children: <Widget>[
+                          SizedBox(
+                            height: 20.0,
+                          ),
                           Container(
                             child: TextFormField(
-                              validator: (input) => input.length <= 0
-                                  ? 'Please enter a Username'
+                              validator: (input) => !input.contains('@')
+                                  ? 'Enter a valid email address'
                                   : null,
-                              onSaved: (input) => _username = input,
-                              decoration:
-                                  InputDecoration(labelText: 'Username'),
+                              onSaved: (input) => _email = input,
+                              decoration: InputDecoration(labelText: 'Email'),
                             ),
                           ),
                           SizedBox(
@@ -100,7 +102,6 @@ class _SignUpState extends State<SignUp> {
                             height: 20.0,
                           ),
                           Container(
-                            // padding: EdgeInsets.only(top: 320.0),
                             child: TextFormField(
                               validator: (input) {
                                 return input != passKey.currentState.value
@@ -110,19 +111,6 @@ class _SignUpState extends State<SignUp> {
                               onSaved: (input) => _confirmPassword = input,
                               decoration: InputDecoration(
                                   labelText: 'Confirm Password'),
-                              obscureText: true,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 20.0,
-                          ),
-                          Container(
-                            child: TextFormField(
-                              validator: (input) => !input.contains('@')
-                                  ? 'Enter a valid email address'
-                                  : null,
-                              onSaved: (input) => _email = input,
-                              decoration: InputDecoration(labelText: 'Email'),
                               obscureText: true,
                             ),
                           ),

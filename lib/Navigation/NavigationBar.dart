@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:minostechsapp/global.dart';
+import 'package:minostechsapp/utilities/global.dart';
+import 'package:minostechsapp/models/user_data.dart';
 import 'package:minostechsapp/pages/homeScreen.dart';
 import 'package:minostechsapp/pages/sharedFilesScreen.dart';
 import 'package:minostechsapp/pages/profileScreen.dart';
+import 'package:provider/provider.dart';
 
 class NavigationBar extends StatefulWidget {
   static final id = 'navigationBarScreen';
@@ -24,6 +26,8 @@ class _NavigationBarState extends State<NavigationBar> {
 
   @override
   Widget build(BuildContext context) {
+    final String currentUserId = Provider.of<UserData>(context).currentUserId;
+
     return MaterialApp(
       theme: ThemeData(
         primaryIconTheme:
@@ -34,9 +38,15 @@ class _NavigationBarState extends State<NavigationBar> {
         body: PageView(
           controller: _pageController,
           children: <Widget>[
-            Home(),
+            Home(
+              currentUserId: currentUserId,
+              userId: currentUserId,
+            ),
             SharedFiles(),
-            Profile(),
+            Profile(
+              currentUserId: currentUserId,
+              userId: currentUserId,
+            ),
           ],
           onPageChanged: (int index) {
             setState(() {

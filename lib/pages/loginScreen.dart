@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:minostechsapp/global.dart';
+import 'package:minostechsapp/utilities/global.dart';
 import 'package:minostechsapp/pages/signupScreen.dart';
 import 'package:minostechsapp/services/auth_service.dart';
 
@@ -19,14 +19,14 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
-  String _username, _password;
+  String _email, _password;
 
   _submit() {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
       // print(_username);
       // print(_password);
-      AuthService.login(_username, _password);
+      AuthService.login(context, _email, _password);
     }
   }
 
@@ -78,21 +78,18 @@ class _LoginState extends State<Login> {
                       child: Column(
                         children: <Widget>[
                           Container(
-                            // padding: EdgeInsets.only(top: 230.0),
                             child: TextFormField(
-                              validator: (input) => input.length <= 0
-                                  ? 'Please enter a Username'
+                              validator: (input) => !input.contains('@')
+                                  ? 'Enter a valid email address'
                                   : null,
-                              onSaved: (input) => _username = input,
-                              decoration:
-                                  InputDecoration(labelText: 'Username'),
+                              onSaved: (input) => _email = input,
+                              decoration: InputDecoration(labelText: 'Email'),
                             ),
                           ),
                           SizedBox(
                             height: 20.0,
                           ),
                           Container(
-                            // padding: EdgeInsets.only(top: 320.0),
                             child: TextFormField(
                               validator: (input) => input.length < 6
                                   ? 'Must be at least 6 characters'
